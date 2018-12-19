@@ -2,12 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>  
   <!-- footer content -->
-  <footer>
+  <!--<footer>
           <div class="pull-right">
             Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
           </div>
           <div class="clearfix"></div>
-        </footer>
+        </footer>-->
         <!-- /footer content -->
       </div>
     </div>
@@ -51,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="<?php echo base_url();?>assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
     <!-- Custom Theme Scripts -->
-    <script src="<?php echo base_url();?>assets/build/js/custom.min.js"></script>
+    <script src="<?php echo base_url();?>assets/build/js/custom.js"></script>
 	
   </body>
 </html>

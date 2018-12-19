@@ -18,11 +18,11 @@ Class Login_model extends CI_Model {
             return $userDetail;
 		
 		/** convert password md5 format*/
-        $pass = md5($password);
+        $pass = $password;
 		
 		/** check login credential using username*/
         $userDetail = $this->getLoginUserCredentialDetail($username);
-		
+
 		/** validate user given password vs DB password */
         if (!empty($userDetail) && $pass) {
             if ($userDetail['0']['password'] != $pass) {
@@ -38,9 +38,9 @@ Class Login_model extends CI_Model {
             return $result;
         }
 
-		$this->db->select('user.username,user.password,user.user_id')
-				->where('user.USERNAME',$username);
-		$query = $this->db->get('user');
+		$this->db->select('Password as password,Username as username, Parent_ID,Db_Name,User_Type_ID')
+				->where('Username',$username);
+		$query = $this->db->get('user_master');
         
         return $query->result_array();
     }

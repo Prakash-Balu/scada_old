@@ -51,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>John Doe</h2>
+                <h2><?php echo $this->session->userdata('username'); ?></h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -163,7 +163,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
+            <!--<div class="sidebar-footer hidden-small">
               <a data-toggle="tooltip" data-placement="top" title="Settings">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
               </a>
@@ -176,7 +176,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
-            </div>
+            </div>-->
             <!-- /menu footer buttons -->
           </div>
         </div>

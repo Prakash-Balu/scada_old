@@ -1,38 +1,24 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-  <!-- page content -->
-  <div class="right_col" role="main">
+
+        <!-- page content -->
+        <div class="right_col" role="main">
           <!-- top tiles -->
           <div class="row">
               <div class="col-md-12">
                 <div class="">
                   <div class="x_content">
                     <div class="row">
-                      <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="tile-stats">
-                          <div class="count">WTG RUN :10</div>
-                          <h3>Total WTG:25</h3>
+                    <?php foreach($response as $key=>$val){ ?>
+                      <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12 <?php echo $key;?>">
+                        <div class="tile-stats text-center">
+                          <div class="count"><?php echo $val['name'].' : '.$val['count'] ?></div>
+                          <div class="border-line"></div>
+                          <h5>Total WTG : <?php echo $val['total'] ?></h5>
                         </div>
                       </div>
-                      <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="tile-stats">
-                          <div class="count">WTG ERROR :10</div>
-                          <h3>Total WTG:25</h3>
-                        </div>
-                      </div>
-                      <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="tile-stats">
-                          <div class="count">WTG GRID DROP :2</div>
-                          <h3>Total WTG:25</h3>
-                        </div>
-                      </div>
-                      <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="tile-stats">
-                          <div class="count">WTG SCADA OFF :3</div>
-                          <h3>Total WTG:25</h3>
-                        </div>
-                      </div>
+                    <?php } ?>
                     </div>
                   </div>
                 </div>
@@ -43,8 +29,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="dashboard_graph">
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <div id="chart_plot_01" class="demo-placeholder"></div>
+              <div class="col-md-6 col-sm-6 col-xs-12 bg-white">
+                  <div class="x_title">
+                    <h2> Wind Speed</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div id="chart_plot_03" class="demo-placeholder"></div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div id="chart_02" class="demo-placeholder"></div>
+                    </div>
+                  <!--  <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div id="chart_03" class="demo-placeholder"></div>
+                    </div>-->
+                  </div>
+                  
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-12 bg-white">
                   <div class="x_title">
@@ -103,86 +105,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <iframe width="530" height="320" src="https://embed.windy.com/embed2.html?lat=13.083&lon=80.283&zoom=6&level=surface&overlay=wind&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=13.083&detailLon=80.283&metricWind=default&metricTemp=default&radarRange=-1" frameborder="0"></iframe>
             </div>
 
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <div class="x_panel tile fixed_height_320 overflow_hidden">
-                <div class="x_title">
-                  <h2>Device Usage</h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Settings 1</a>
-                        </li>
-                        <li><a href="#">Settings 2</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                  </ul>
-                  <div class="clearfix"></div>
+              <div class="col-md-6 col-sm-6 col-xs-12 bg-white">
+                  <div class="x_title">
+                    <h2> Temperature Trending</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="col-md-12 col-sm-12 col-xs-6">
+                    <div id="chart_plot_01" class="demo-placeholder"></div>
+                  </div>
                 </div>
-                <div class="x_content">
-                  <table class="" style="width:100%">
-                    <tr>
-                      <th style="width:37%;">
-                        <p>Top 5</p>
-                      </th>
-                      <th>
-                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                          <p class="">Device</p>
-                        </div>
-                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                          <p class="">Progress</p>
-                        </div>
-                      </th>
-                    </tr>
-                    <tr>
-                      <td>
-                        <canvas class="canvasDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
-                      </td>
-                      <td>
-                        <table class="tile_info">
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square blue"></i>IOS </p>
-                            </td>
-                            <td>30%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square green"></i>Android </p>
-                            </td>
-                            <td>10%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square purple"></i>Blackberry </p>
-                            </td>
-                            <td>20%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square aero"></i>Symbian </p>
-                            </td>
-                            <td>15%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square red"></i>Others </p>
-                            </td>
-                            <td>30%</td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-              </div>
-            </div>
-
+            <?php /* ?>
 
             <div class="col-md-6 col-sm-6 col-xs-12">
               <div class="x_panel tile fixed_height_320">
@@ -218,7 +150,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <li><i class="fa fa-bar-chart"></i><a href="#">Auto Renewal</a> </li>
                       <li><i class="fa fa-line-chart"></i><a href="#">Achievements</a>
                       </li>
-                      <li><i class="fa fa-area-chart"></i><a href="#">Logout</a>
+                      <li><i class="fa fa-area-chart"></i><a href="logout.php">Logout</a>
                       </li>
                     </ul>
 
@@ -235,7 +167,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
               </div>
             </div>
-
+ 
           </div>
 
 
@@ -573,8 +505,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <!-- end of weather widget -->
               </div>
             </div>
-          </div>
+          </div> <?php */ ?>
         </div>
         <!-- /page content -->
 
-<?php echo $this->load->view('layout/footer'); ?>
+<?php  $this->load->view('layout/footer'); ?>
