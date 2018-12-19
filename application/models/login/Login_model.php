@@ -44,6 +44,19 @@ Class Login_model extends CI_Model {
         
         return $query->result_array();
     }
+
+    function getDeviceList( $username ) {
+        $result = array();
+        if (empty($username)) {
+            return $result;
+        }
+
+        $this->db->select('username, device_type')
+                ->where('username',$username);
+        $query = $this->db->get('device_master');
+        
+        return array_column($query->result_array(), 'device_type');
+    }
 	
 	 function specialCharacterRemoval( $string ) {
        return preg_replace('#[^\w()/.%\-]#'," ", $string);
