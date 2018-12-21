@@ -21,7 +21,7 @@ class Dashboard extends CI_Controller {
 	}
  
 	function index() {
-		$type_list = array(7,8);//get devic type list
+		$type_list = $this->session->userdata('device_type_list');//get devic type list
 		$data['green']=$data['blue']=$data['red']=$data['gray']=array();
 		if(!empty($type_list))
 		{

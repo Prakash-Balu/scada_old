@@ -36,15 +36,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   </div>
                   <div class="col-md-12 col-sm-12 col-xs-12">
                     
-                    <div class="col-md-12 col-sm-12 col-xs-12">
+                    <!-- <div class="col-md-12 col-sm-12 col-xs-12">
                       <div id="chart_plot_03" class="demo-placeholder"></div>
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12">
                       <div id="chart_02" class="demo-placeholder"></div>
+                    </div> -->
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div class="sparkline22 graph" style="height: 70px;">
+                                <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
+                          </div>
                     </div>
-                  <!--  <div class="col-md-12 col-sm-12 col-xs-12">
-                      <div id="chart_03" class="demo-placeholder"></div>
-                    </div>-->
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div class="sparkline22 graph" style="height: 70px;">
+                                <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
+                          </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <span class="sparkline11 graph" style="height: 160px;">
+                                 <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
+                          </span>
+                    </div>
                   </div>
                   
                 </div>

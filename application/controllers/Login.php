@@ -34,18 +34,21 @@ class Login extends CI_Controller {
 			{
 				$formvalues	=	$this->input->post();
 				$userdata	=	$this->Login_model->loginValidation( $formvalues );
+
 				if ( !empty( $userdata ) )	{
 					/** check email count is one then redirect to crossponding user domain*/
 					if( count($userdata) == 1 ) {/** User has one role */
 						/** Get user name  */
 						$userName	= ucfirst($userdata['0']['username']);
-			
+						$deviceList	=	$this->Login_model->getDeviceList( $userName );
+
 						/** Set session value  */ 
 						$data['username']	= $userName;
 						$data['partner_id']	= $userdata['0']['Parent_ID'];
 						$data['db_name']	= $userdata['0']['Db_Name'];
 						$data['user_type_id']	= $userdata['0']['User_Type_ID'];
-						//echo '<pre>';print_r($data);exit;
+						$data['device_type_list']	= $deviceList;
+						// echo "<pre>"; print_r($data); exit;
 						$this->session->set_userdata($data);
 						redirect(base_url().'dashboard');
 					}

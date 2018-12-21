@@ -22,6 +22,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="<?php echo base_url();?>assets/vendors/nprogress/nprogress.js"></script>
     <!-- Chart.js -->
     <script src="<?php echo base_url();?>assets/vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- jQuery Sparklines -->
+    <script src="<?php echo base_url();?>assets/vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
     <!-- gauge.js -->
     <script src="<?php echo base_url();?>assets/vendors/gauge.js/dist/gauge.min.js"></script>
     <!-- bootstrap-progressbar -->
