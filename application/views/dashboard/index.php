@@ -11,11 +11,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <div class="x_content">
                     <div class="row">
                     <?php foreach($response as $key=>$val){ ?>
-                      <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12 <?php echo $key;?>">
-                        <div class="tile-stats text-center">
-                          <div class="count"><?php echo $val['name'].' : '.$val['count'] ?></div>
+                      <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="tile-stats text-center" style="background-color: <?php echo $key;?>">
+                          <div class="count" style="color: #fff;"><?php echo $val['name'].' : '.$val['count'] ?></div>
                           <div class="border-line"></div>
-                          <h5>Total WTG : <?php echo $val['total'] ?></h5>
+                          <h5 style="color: #fff;">Total WTG : <?php echo $val['total'] ?></h5>
                         </div>
                       </div>
                     <?php } ?>
