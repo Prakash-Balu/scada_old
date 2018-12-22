@@ -32,11 +32,13 @@ class Dashboard extends CI_Controller {
 			$green=$blue=$red=$gray=array();
 			foreach($type_list as $list)
 			{
-				$val	=	$this->Common_model->get_device_details( $list );
-
+				$val	=	$this->Common_model->get_device_details( $list->Format_Type );
+				/** get current time from DB and then check device date is less then 1 hour for current time */
 				$query = $this->db2->query('select (NOW() - INTERVAL 2 HOUR) as curr_time', TRUE);
 				$curr_time = strtotime($query->row()->curr_time);
+
 				$device_time = strtotime($val->Date_S.' '.$val->Time_S);
+				/** less then 1 hour for current time then it's gray color*/
 				if($device_time > $curr_time)
 				{
 					$gray[] = $val;
@@ -51,10 +53,10 @@ class Dashboard extends CI_Controller {
 				}
 				
 			}
-			$data['response']['green'] = array('count'=> count($green),'name'=>'WTG RUN','total'=>$total_device);
-			$data['response']['red']= array('count'=> count($red),'name'=>'WTG GRID DROP','total'=>$total_device);
-			$data['response']['blue']= array('count'=> count($blue),'name'=>'WTG ERROR','total'=>$total_device);
-			$data['response']['gray']= array('count'=> count($gray),'name'=>'WTG SCADA OFF','total'=>$total_device);
+			$data['response']['green'] = array('count'=> count($green),'name'=>'WTG RUN','total'=>$list->cnt);
+			$data['response']['red']= array('count'=> count($red),'name'=>'WTG GRID DROP','total'=>$list->cnt);
+			$data['response']['blue']= array('count'=> count($blue),'name'=>'WTG ERROR','total'=>$list->cnt);
+			$data['response']['gray']= array('count'=> count($gray),'name'=>'WTG SCADA OFF','total'=>$list->cnt);
 		}
 		
 		$this->load->view('dashboard/index',$data);

@@ -10,9 +10,9 @@ Class Common_model extends CI_Model {
     }
 
    function set_db_config(  ) {
-        $config['hostname'] = 'mysqlhost';
-		$config['username'] = 'root';
-		$config['password'] = 'mysql';
+        $config['hostname'] = DB_HOST;
+		$config['username'] = DB_USERNAME;
+		$config['password'] = DB_PASSWORD;
 		$config['database'] = $this->session->userdata('db_name');
 		$config['dbdriver'] = 'mysqli';
 		$config['dbprefix'] = '';
@@ -61,12 +61,25 @@ Class Common_model extends CI_Model {
 	
 		$Account_ID = $this->session->userdata('account_id');
 
-        $this->db->select('distinct(Format_Type) as Format_Type')
+        $this->db->select('distinct(Format_Type) as Format_Type , (SELECT  count(*) as cnt FROM `device_register` WHERE `Account_ID` = '.$Account_ID.') as cnt')
 				->where('Account_ID',$Account_ID)
 				->where_not_in('Format_Type',1);
+		$query = $this->db->get('device_register');
+    
+        return $query->result();
+	}
+	
+	function get_region_site_list(  ) {
+        $result = array();
+	
+		$Account_ID = $this->session->userdata('account_id');
+
+        $this->db->select('Site_Location,Region')
+				->where('Account_ID',$Account_ID)
+				->where("Region!=''")
+				->group_by('Region,Site_Location');
         $query = $this->db->get('device_register');
-        
-        return array_column($query->result_array(), 'Format_Type');
+        return $query->result_array();
     }
 
    

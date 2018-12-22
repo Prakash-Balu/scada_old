@@ -1,5 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+$region_list = $this->Common_model->get_region_site_list();
+foreach($region_list as $list)
+{
+  $menu[$list['Region']][] = $list['Site_Location'];
+}
+//echo '<pre>';print_r($menu);exit;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,8 +71,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Dashboard</a></li>
                   <li><a><i class="fa fa-edit"></i> ParkView </a></li>
-                  <li><a><i class="fa fa-desktop"></i> Region Wise </a></li>
-                  <li><a><i class="fa fa-table"></i> Site</a></li>
+                  <li><a><i class="fa fa-sitemap"></i> Region Wise <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <?php if(!empty($menu)) {
+                              foreach($menu as $key=>$sub) {
+                            ?>
+                        <li><a><?php echo $key;?><span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                          <?php foreach($sub as $val){ ?>
+                            <li class="sub_menu"><a href="#"><?php echo $val;?></a>
+                            </li>
+                          <?php } ?> 
+                          </ul>
+                        </li>
+                              <?php } } ?>
+                        </li>
+                    </ul>
+                  </li>
                   <li><a><i class="fa fa-bar-chart-o"></i> Device name </a></li>
                   <li><a><i class="fa fa-clone"></i>Analytics</a></li>
                   <li><a><i class="fa fa-clone"></i>Reports</a></li>
