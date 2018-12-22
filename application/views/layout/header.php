@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $region_list = $this->Common_model->get_region_site_list();
 foreach($region_list as $list)
 {
-  $menu[$list['Region']][] = $list['Site_Location'];
+  $menu[$list['Region']][$list['Site_Location']][] = $list['Device_Name'];
 }
 //echo '<pre>';print_r($menu);exit;
 ?>
@@ -78,8 +78,14 @@ foreach($region_list as $list)
                             ?>
                         <li><a><?php echo $key;?><span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                          <?php foreach($sub as $val){ ?>
-                            <li class="sub_menu"><a href="#"><?php echo $val;?></a>
+                          <?php foreach($sub as $key => $val){ ?>
+                            <li class="sub_menu"><a href="#"> <span class="fa fa-chevron-down"></span><?php echo $key;?></a>
+                              <ul class="nav child_menu">
+                              <?php foreach($val as $device){ ?>
+                                <li class="sub_menu"><a href="#"><?php echo $device;?></a>
+                                </li>
+                              <?php } ?> 
+                            </ul>
                             </li>
                           <?php } ?> 
                           </ul>
