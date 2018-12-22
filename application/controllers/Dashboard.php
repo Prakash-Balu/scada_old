@@ -21,6 +21,7 @@ class Dashboard extends CI_Controller {
 	function index() {
 		
 		$type_list = $this->Common_model->getDeviceList(  );//get devic type list
+		//print_r($type_list);
 		$data['green']=$data['blue']=$data['red']=$data['gray']=array();
 		$total_device = count($type_list);
 		if(!empty($type_list))
@@ -32,7 +33,7 @@ class Dashboard extends CI_Controller {
 			$green=$blue=$red=$gray=array();
 			foreach($type_list as $list)
 			{
-				$val	=	$this->Common_model->get_device_details( $list->Format_Type );
+				$val	=	$this->Common_model->get_device_details( $list->Format_Type, $list->IMEI );
 				/** get current time from DB and then check device date is less then 1 hour for current time */
 				$query = $this->db2->query('select (NOW() - INTERVAL 2 HOUR) as curr_time', TRUE);
 				$curr_time = strtotime($query->row()->curr_time);

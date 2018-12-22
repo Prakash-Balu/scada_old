@@ -25,11 +25,10 @@ Class Common_model extends CI_Model {
         return $config;
 	}
 	
-	function get_device_details($type)
+	function get_device_details($type, $imei)
 	{
-		$device_data = $this->get_device_data_details( $type );
-		$error_data = $this->get_error_data_details( $type );
-		
+		$device_data = $this->get_device_data_details( $type, $imei );
+		$error_data = $this->get_error_data_details( $type, $imei );
 		$device_time = strtotime($device_data->Date_S.' '.$device_data->Time_S);
 		$error_time = strtotime($error_data->Date_S.' '.$error_data->Time_S);
 
@@ -40,16 +39,22 @@ Class Common_model extends CI_Model {
 		}
 		return $val;		
 	}
-    function get_device_data_details( $type ) {
-		$this->db2->select('*')->from('device_data_f'.$type);
+    function get_device_data_details( $type , $imei) {
+		//skip for format type 1
+		($type == 1? $type = "" : $type = "_f".$type);
+		$this->db2->select('*')->from('device_data'.$type)->where('IMEI',$imei);
+		//$this->db2->where('IMEI',$imei);
 		$this->db2->order_by('Record_Index','DESC');
 		$this->db2->limit(1);
 		$query = $this->db2->get();
         return $query->row();
 	}
 	
-	function get_error_data_details( $type ) {
-		$this->db2->select('*')->from('error_data_f'.$type);
+	function get_error_data_details( $type, $imei ) {
+		//skip for format type 1
+		($type == 1? $type = "" : $type = "_f".$type);
+		$this->db2->select('*')->from('error_data'.$type);
+		//$this->db2->where('IMEI',$imei);
 		$this->db2->order_by('Record_Index','DESC');
 		$this->db2->limit(1);
 		$query = $this->db2->get();
@@ -61,9 +66,9 @@ Class Common_model extends CI_Model {
 	
 		$Account_ID = $this->session->userdata('account_id');
 
-        $this->db->select('distinct(Format_Type) as Format_Type , (SELECT  count(*) as cnt FROM `device_register` WHERE `Account_ID` = '.$Account_ID.') as cnt')
-				->where('Account_ID',$Account_ID)
-				->where_not_in('Format_Type',1);
+        $this->db->select('IMEI, Format_Type , (SELECT  count(*) as cnt FROM `device_register` WHERE `Account_ID` = '.$Account_ID.') as cnt')
+				->where('Account_ID',$Account_ID);
+				//->where_not_in('Format_Type',1);
 		$query = $this->db->get('device_register');
     
         return $query->result();
