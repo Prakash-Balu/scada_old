@@ -15,14 +15,14 @@ class Dashboard extends CI_Controller {
 			redirect('');
 		}
 		$this->load->view('layout/header');
-		$this->load->model("common/Common_model");
-		$config = $this->Common_model->set_db_config($this->sessionDbname);
-		$this->db2 = $this->load->database($config, TRUE);
+		$this->db2 = $this->load->database($this->Common_model->set_db_config(), TRUE);
 	}
  
 	function index() {
-		$type_list = $this->session->userdata('device_type_list');//get devic type list
+		
+		$type_list = $this->Common_model->getDeviceList(  );//get devic type list
 		$data['green']=$data['blue']=$data['red']=$data['gray']=array();
+		$total_device = count($type_list);
 		if(!empty($type_list))
 		{
 			$green_array = array('Run', 'RUN', 'M/C Running', 'M/C Running');
@@ -33,24 +33,28 @@ class Dashboard extends CI_Controller {
 			foreach($type_list as $list)
 			{
 				$val	=	$this->Common_model->get_device_details( $list );
-				//print_r($val->Status);
-				
-				if(in_array($val->Status,$green_array))
+
+				$query = $this->db2->query('select (NOW() - INTERVAL 2 HOUR) as curr_time', TRUE);
+				$curr_time = strtotime($query->row()->curr_time);
+				$device_time = strtotime($val->Date_S.' '.$val->Time_S);
+				if($device_time > $curr_time)
+				{
+					$gray[] = $val;
+				}
+				elseif(in_array($val->Status,$green_array))
 				{
 					$green[] = $val;
 				}elseif(in_array($val->Status,$blue_array)){
 					$blue[] = $val;
 				}elseif(in_array($val->Status,$red_array)){
 					$red[] = $val;
-				}else{
-					$gray[] = $val;
 				}
 				
 			}
-			$data['response']['green'] = array('count'=> count($green),'name'=>'WTG RUN','total'=>0);
-			$data['response']['red']= array('count'=> count($red),'name'=>'WTG GRID DROP','total'=>0);
-			$data['response']['blue']= array('count'=> count($blue),'name'=>'WTG ERROR','total'=>0);
-			$data['response']['gray']= array('count'=> count($gray),'name'=>'WTG SCADA OFF','total'=>0);
+			$data['response']['green'] = array('count'=> count($green),'name'=>'WTG RUN','total'=>$total_device);
+			$data['response']['red']= array('count'=> count($red),'name'=>'WTG GRID DROP','total'=>$total_device);
+			$data['response']['blue']= array('count'=> count($blue),'name'=>'WTG ERROR','total'=>$total_device);
+			$data['response']['gray']= array('count'=> count($gray),'name'=>'WTG SCADA OFF','total'=>$total_device);
 		}
 		
 		$this->load->view('dashboard/index',$data);

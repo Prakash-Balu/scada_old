@@ -1,17 +1,19 @@
 <?php
 
 Class Common_model extends CI_Model {
-
+	//public $db2;
     function __construct() {
         parent::__construct();
-	$this->load->database();
+		$this->load->database();
+		$this->load->library('session');
+		$this->db2 = $this->load->database($this->set_db_config(), TRUE);
     }
 
-   function set_db_config( $dbname ) {
-       $config['hostname'] = 'mysqlhost';
+   function set_db_config(  ) {
+        $config['hostname'] = 'mysqlhost';
 		$config['username'] = 'root';
 		$config['password'] = 'mysql';
-		$config['database'] = $dbname;
+		$config['database'] = $this->session->userdata('db_name');
 		$config['dbdriver'] = 'mysqli';
 		$config['dbprefix'] = '';
 		$config['pconnect'] = FALSE;
@@ -54,7 +56,18 @@ Class Common_model extends CI_Model {
           return $query->row();
     }
 	
+	function getDeviceList(  ) {
+        $result = array();
 	
+		$Account_ID = $this->session->userdata('account_id');
+
+        $this->db->select('distinct(Format_Type) as Format_Type')
+				->where('Account_ID',$Account_ID)
+				->where_not_in('Format_Type',1);
+        $query = $this->db->get('device_register');
+        
+        return array_column($query->result_array(), 'Format_Type');
+    }
 
    
 }
