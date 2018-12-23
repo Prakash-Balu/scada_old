@@ -69,8 +69,8 @@ foreach($region_list as $list)
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i> Dashboard</a></li>
-                  <li><a><i class="fa fa-edit"></i> ParkView </a></li>
+                  <li><a href="<?php echo base_url().'dashboard';?>"><i class="fa fa-home"></i> Dashboard</a></li>
+                  <li><a href="<?php echo base_url().'parkview';?>"><i class="fa fa-edit"></i> ParkView </a></li>
                   <li><a><i class="fa fa-sitemap"></i> Region Wise <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <?php if(!empty($menu)) {
