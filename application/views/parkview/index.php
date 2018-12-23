@@ -7,12 +7,48 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="clearfix"></div>
 
             <div class="row">
+
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
                     <h2 class="text-center">In House O&M SCADA Monitoring</h2>
                     <div class="clearfix"></div>
                   </div>
+                  <div class="x_content">
+                    <table id="datatable" class="table table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <th colspan="8">Surandai</th>
+                        </tr>
+                        <tr>
+                          <th>Power</th>
+                          <th>Windspeed</th>
+                          <th>Generating</th>
+                          <th colspan="2">Null Wind</th>
+                          <th>Fault</th>
+                          <th>Grid Drop</th>
+                          <th>No Communication</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>6400</td>
+                          <td>10.5M/s</td>
+                          <td>12</td>
+                          <td>1</td>
+                          <td></td>
+                          <td>2</td>
+                          <td>2</td>
+                          <td>1</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
                   <div class="x_content">
                     <table id="datatable" class="table table-striped table-bordered">
                       <thead>
