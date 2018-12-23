@@ -27,15 +27,19 @@ Class Common_model extends CI_Model {
 	
 	function get_device_details($type, $imei)
 	{
+		$val =array();
 		$device_data = $this->get_device_data_details( $type, $imei );
 		$error_data = $this->get_error_data_details( $type, $imei );
-		$device_time = strtotime($device_data->Date_S.' '.$device_data->Time_S);
-		$error_time = strtotime($error_data->Date_S.' '.$error_data->Time_S);
-
-		$val =$error_data;
-		if($device_time > $error_time)
+		if(!empty($device_data) && !empty($error_data))
 		{
-			$val =$device_data;
+			$device_time = strtotime($device_data->Date_S.' '.$device_data->Time_S);
+			$error_time = strtotime($error_data->Date_S.' '.$error_data->Time_S);
+
+			$val =$error_data;
+			if($device_time > $error_time)
+			{
+				$val =$device_data;
+			}
 		}
 		return $val;		
 	}
@@ -47,6 +51,7 @@ Class Common_model extends CI_Model {
 		$this->db2->order_by('Record_Index','DESC');
 		$this->db2->limit(1);
 		$query = $this->db2->get();
+		//echo $this->db2->last_query();
         return $query->row();
 	}
 	
@@ -58,6 +63,7 @@ Class Common_model extends CI_Model {
 		$this->db2->order_by('Record_Index','DESC');
 		$this->db2->limit(1);
 		$query = $this->db2->get();
+		//echo $this->db2->last_query();
           return $query->row();
     }
 	
