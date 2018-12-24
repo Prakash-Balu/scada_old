@@ -32,6 +32,8 @@ foreach($region_list as $list)
     <link href="<?php echo base_url();?>assets/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
     <!-- JQVMap -->
     <link href="<?php echo base_url();?>assets/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+    <!-- bootstrap-datetimepicker -->
+    <link href="<?php echo base_url();?>assets/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
     <link href="<?php echo base_url();?>assets/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
@@ -93,7 +95,7 @@ foreach($region_list as $list)
                         </li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Analytics </a></li>
+                  <li><a href="<?php echo base_url().'dashboard/temp_analysis';?>"><i class="fa fa-bar-chart-o"></i> Analytics </a></li>
                   <li><a><i class="fa fa-clone"></i>Reports</a></li>
                 </ul>
               </div>

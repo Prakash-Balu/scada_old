@@ -50,9 +50,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="<?php echo base_url();?>assets/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
     <!-- bootstrap-daterangepicker -->
     <script src="<?php echo base_url();?>assets/vendors/moment/min/moment.min.js"></script>
+    <!-- bootstrap-datetimepicker -->    
+    <script src="<?php echo base_url();?>assets/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
     <script src="<?php echo base_url();?>assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <script src="<?php echo base_url();?>assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-
+    <!-- morris.js -->
+    <script src="<?php echo base_url();?>assets/vendors/raphael/raphael.min.js"></script>
+    <script src="<?php echo base_url();?>assets/vendors/morris.js/morris.min.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="<?php echo base_url();?>assets/build/js/custom.js"></script>
 	
