@@ -69,12 +69,31 @@ class Dashboard extends CI_Controller {
 		$this->load->view('dashboard/index',$data);
 	}
 	
-	function chart1() {
+	function park_view() {
 		
-		echo json_encode($data['chart']);exit;
+		/*$region_list = $this->Common_model->get_region_site_list();
+		$i=0;
+		echo '<pre>';print_r( $region_list);
+		foreach($region_list as $list)
+		{
+			$device_info = (array)$this->Common_model->get_device_data_details( $list['Format_Type'], $list['IMEI'] );
+			$device_info['Device_Name']= $list['Device_Name'];
+			$device_data[$list['Region']][$list['Device_Name']][] = $device_info;
+			$winspeed[$list['Region']]['Windspeed'][$list['IMEI']] = $device_info['Windspeed'];
+			$winspeed[$list['Region']]['Power'][$list['IMEI']] = $device_info['Power'];
+			$top_data[$list['Region']] = array( 'Windspeed'=>array($device_info['Windspeed']), 'Power'=>array($device_info['Power']));
+		$i++;}
+
+		echo '<pre>';print_r( $device_data);
+		echo '<pre>';print_r($winspeed);exit;*/
+
+		$this->load->view('dashboard/park_view');
 	}
 	
-	
+	function temp_analysis() {
+
+		$this->load->view('dashboard/temp_analysis');
+	}
  
 }
 

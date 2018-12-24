@@ -85,7 +85,7 @@ Class Common_model extends CI_Model {
 	
 		$Account_ID = $this->session->userdata('account_id');
 
-        $this->db->select('Site_Location,Region, Device_Name')
+        $this->db->select('Site_Location,Region, Device_Name, Format_Type,IMEI')
 				->where('Account_ID',$Account_ID)
 				->where("Region!=''");
 			//	->group_by('Region,Site_Location');
