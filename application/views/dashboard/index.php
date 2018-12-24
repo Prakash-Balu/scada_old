@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="tile-stats text-center" style="background-color: <?php echo $key;?>">
                           <div class="count" style="color: #fff;"><?php echo $val['name'].' : '.$val['count'] ?></div>
                           <div class="border-line"></div>
-                          <h5 style="color: #fff;">Total WTG : <?php echo $val['total'] ?></h5>
+                          <h5 style="color: #fff;font-weight: bold;padding-top: 10px;">Total WTG : <?php echo $val['total'] ?></h5>
                         </div>
                       </div>
                     <?php } ?>

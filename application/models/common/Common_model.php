@@ -47,7 +47,7 @@ Class Common_model extends CI_Model {
 		//skip for format type 1
 		($type == 1? $type = "" : $type = "_f".$type);
 		$this->db2->select('*')->from('device_data'.$type);
-		//$this->db2->where('IMEI',$imei);
+		$this->db2->where('IMEI',$imei);
 		$this->db2->order_by('Record_Index','DESC');
 		$this->db2->limit(1);
 		$query = $this->db2->get();
@@ -59,7 +59,7 @@ Class Common_model extends CI_Model {
 		//skip for format type 1
 		($type == 1? $type = "" : $type = "_f".$type);
 		$this->db2->select('*')->from('error_data'.$type);
-		//$this->db2->where('IMEI',$imei);
+		$this->db2->where('IMEI',$imei);
 		$this->db2->order_by('Record_Index','DESC');
 		$this->db2->limit(1);
 		$query = $this->db2->get();

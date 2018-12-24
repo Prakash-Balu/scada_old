@@ -45,7 +45,7 @@ foreach($region_list as $list)
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Versatile Scada</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -53,7 +53,7 @@ foreach($region_list as $list)
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="<?php echo base_url();?>assets/images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="<?php echo base_url();?>assets/images/user.png" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
@@ -67,10 +67,9 @@ foreach($region_list as $list)
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i> Dashboard</a></li>
-                  <li><a><i class="fa fa-edit"></i> ParkView </a></li>
+                  <li><a href="<?php echo base_url().'dashboard';?>"><i class="fa fa-home"></i> Dashboard</a></li>
+                  <li><a href="<?php echo base_url().'parkview';?>"><i class="fa fa-edit"></i> ParkView </a></li>
                   <li><a><i class="fa fa-sitemap"></i> Region Wise <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <?php if(!empty($menu)) {
@@ -94,8 +93,7 @@ foreach($region_list as $list)
                         </li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Device name </a></li>
-                  <li><a><i class="fa fa-clone"></i>Analytics</a></li>
+                  <li><a><i class="fa fa-bar-chart-o"></i> Analytics </a></li>
                   <li><a><i class="fa fa-clone"></i>Reports</a></li>
                 </ul>
               </div>
