@@ -1,5 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
+// echo "<pre>"; print_r($parkview); exit;
 ?>
         <!-- page content -->
         <div class="right_col" role="main">
@@ -8,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="title_left">
                 <h3>Park View</h3>
               </div>
-
+              
               <!--<div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <div class="input-group">
@@ -24,10 +26,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="clearfix"></div>
 
             <div class="row">
+              <?php foreach ($parkview['regions'] as $key => $value) {
+                foreach ($parkview['regionDeviceData'] as $key1 => $value1) {
+                  
+
+                    if( $value['Region'] == $key1 && array_key_exists($value['Device_Name'], $value1) ) {
+// echo "<pre>"; print_r($key); 
+//                     echo "<pre>"; print_r($value); 
+//                     echo "<pre>"; print_r($key1); 
+//                     echo "<pre>"; print_r($value1); exit;
+                    
+                ?>
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Palladam</h2>
+                    <h2><?php echo $value['Region'];?></h2>
                      <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -45,8 +58,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       </thead>
                       <tbody>
                         <tr>
-                          <td>6400</td>
-                          <td>100 m/s</td>
+                          <td><?php echo $value1[$value['Device_Name']][0]['Power'];?></td>
+                          <td><?php echo $value1[$value['Device_Name']][0]['Windspeed'];?></td>
                           <td>12</td>
                           <td>61</td>
                           <td>10</td>
@@ -84,18 +97,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       </thead>
                       <tbody>
                         <tr>
-                          <td>Tiger</td>
-                          <td>Nixon</td>
-                          <td>System Architect</td>
-                          <td>Edinburgh</td>
-                          <td>61</td>
-                          <td>2011/04/25</td>
-                          <td>$320,800</td>
-                          <td>5421</td>
-                          <td>t.nixon@datatables.net</td>
-                          <td>$320,800</td>
-                          <td>5421</td>
-                          <td>t.nixon@datatables.net</td>
+                          <td><?php echo $value['LOC_No'];?></td>
+                          <td><?php echo $value1[$value['Device_Name']][0]['Status'];?></td>
+                          <td><?php echo $value['capacity'];?></td>
+                          <td><?php echo $value1[$value['Device_Name']][0]['Power'];?></td>
+                          <td><?php echo $value1[$value['Device_Name']][0]['Windspeed'];?></td>
+                          <td><?php echo $value1[$value['Device_Name']][0]['RRPM'];?></td>
+                          <td><?php echo $value1[$value['Device_Name']][0]['GRPM'];?></td>
+                          <td><?php echo (array_key_exists('Pitch', $value1[$value['Device_Name']][0]) ? $value1[$value['Device_Name']][0]['Pitch'] : 0);?></td>
+                          <td><?php echo (array_key_exists('Frequency', $value1[$value['Device_Name']][0]) ? $value1[$value['Device_Name']][0]['Frequency'] : 0);?></td>
+                          <td><?php echo $value1[$value['Device_Name']][0]['RPhase_Volt'];?></td>
+                          <td><?php echo (array_key_exists('Gen1_Temp', $value1[$value['Device_Name']][0]) ? $value1[$value['Device_Name']][0]['Gen1_Temp'] : 0);?></td>
+                          <td><?php echo $value['Connect_Feeder'];?></td>
                         </tr>
                       </tbody>
                     </table>
@@ -133,7 +146,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   </div>
                 </div>
               </div>
+              <?php
+                  }
+                }
+              }
+            ?>
             </div>
+
+            
           </div>
         </div>
         <!-- /page content -->

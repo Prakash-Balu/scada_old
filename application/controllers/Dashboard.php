@@ -32,11 +32,11 @@ class Dashboard extends CI_Controller {
 			$total_count=0;
 			$i=0;
 			$green=$blue=$red=$gray=array();
-			
+			$avgWindSpeed = 0;
 			foreach($type_list as $list)
 			{
 				$val	=	$this->Common_model->get_device_details( $list->Format_Type, $list->IMEI );
-				
+				// echo "<pre>";print_r($val); exit;
 				if(!empty($val))
 				{
 					/** get current time from DB and then check device date is less then 1 hour for current time */
@@ -57,37 +57,48 @@ class Dashboard extends CI_Controller {
 					}elseif(in_array($val->Status,$red_array)){
 						$red[] = $val;
 					}
+
+					$avgWindSpeed = $avgWindSpeed + $val->Windspeed;
 				}
 				$total_count = $list->cnt;
+				$avgWindSpeed = $avgWindSpeed/$total_count;
 			}
 			$data['response']['green'] = array('count'=> count($green),'name'=>'WTG RUN','total'=>$total_count);
 			$data['response']['red']= array('count'=> count($red),'name'=>'WTG GRID DROP','total'=>$total_count);
 			$data['response']['blue']= array('count'=> count($blue),'name'=>'WTG ERROR','total'=>$total_count);
 			$data['response']['gray']= array('count'=> count($gray),'name'=>'WTG SCADA OFF','total'=>$total_count);
+			$data1['avgWindSpeed'] = $avgWindSpeed;
+			$this->session->set_userdata($data1);
 		}
-		
+	
 		$this->load->view('dashboard/index',$data);
 	}
 	
 	function park_view() {
 		
-		/*$region_list = $this->Common_model->get_region_site_list();
+		$region_list = $this->Common_model->get_region_site_list();
 		$i=0;
-		echo '<pre>';print_r( $region_list);
+		// echo '<pre>';print_r( $region_list);
 		foreach($region_list as $list)
 		{
 			$device_info = (array)$this->Common_model->get_device_data_details( $list['Format_Type'], $list['IMEI'] );
+
+			if( !empty($device_info) ) {
 			$device_info['Device_Name']= $list['Device_Name'];
 			$device_data[$list['Region']][$list['Device_Name']][] = $device_info;
 			$winspeed[$list['Region']]['Windspeed'][$list['IMEI']] = $device_info['Windspeed'];
 			$winspeed[$list['Region']]['Power'][$list['IMEI']] = $device_info['Power'];
 			$top_data[$list['Region']] = array( 'Windspeed'=>array($device_info['Windspeed']), 'Power'=>array($device_info['Power']));
+		}
 		$i++;}
 
-		echo '<pre>';print_r( $device_data);
-		echo '<pre>';print_r($winspeed);exit;*/
+		// echo '<pre>';print_r( $device_data);
+		// echo '<pre>';print_r($winspeed);exit;
 
-		$this->load->view('dashboard/park_view');
+		$data['parkview']['regions'] = $region_list;
+		$data['parkview']['regionDeviceData'] = $device_data;
+
+		$this->load->view('dashboard/park_view', $data);
 	}
 	
 	function temp_analysis() {
