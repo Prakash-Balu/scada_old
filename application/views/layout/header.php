@@ -37,8 +37,15 @@ foreach($region_list as $list)
     <!-- bootstrap-daterangepicker -->
     <link href="<?php echo base_url();?>assets/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
+    <!-- Datatables -->
+    <link href="<?php echo base_url();?>assets/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+
     <!-- Custom Theme Style -->
-    <link href="<?php echo base_url();?>assets/build/css/custom.min.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/build/css/custom.css" rel="stylesheet">
   </head>
 
   <body class="nav-md">
@@ -71,7 +78,7 @@ foreach($region_list as $list)
               <div class="menu_section">
                 <ul class="nav side-menu">
                   <li><a href="<?php echo base_url().'dashboard';?>"><i class="fa fa-home"></i> Dashboard</a></li>
-                  <li><a href="<?php echo base_url().'parkview';?>"><i class="fa fa-edit"></i> ParkView </a></li>
+                  <li><a href="<?php echo base_url().'dashboard/park_view';?>"><i class="fa fa-edit"></i> ParkView </a></li>
                   <li><a><i class="fa fa-sitemap"></i> Region Wise <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <?php if(!empty($menu)) {
@@ -95,7 +102,16 @@ foreach($region_list as $list)
                         </li>
                     </ul>
                   </li>
-                  <li><a href="<?php echo base_url().'dashboard/temp_analysis';?>"><i class="fa fa-bar-chart-o"></i> Analytics </a></li>
+                  <li><a><i class="fa fa-bar-chart-o"></i> Analytics <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li class="sub_menu"><a href="<?php echo base_url().'dashboard/temp_analysis';?>"></span>Temperature</a>
+                      </li>
+                      <li class="sub_menu"><a href="<?php echo base_url().'dashboard/powercurve_analysis';?>"></span>Power Curve</a>
+                      </li>
+                      <li class="sub_menu"><a href="<?php echo base_url().'dashboard/performance_analysis';?>"></span>Performance</a>
+                      </li>
+                    </ul>
+                  </li>
                   <li><a><i class="fa fa-clone"></i>Reports</a></li>
                 </ul>
               </div>

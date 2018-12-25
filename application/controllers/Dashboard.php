@@ -91,10 +91,16 @@ class Dashboard extends CI_Controller {
 	}
 	
 	function temp_analysis() {
-
 		$this->load->view('dashboard/temp_analysis');
 	}
- 
+
+	function powercurve_analysis() {
+		$this->load->view('dashboard/powercurve_analysis');
+	}
+
+	function performance_analysis() {
+		$this->load->view('dashboard/performance_analysis');
+	}
 }
 
 

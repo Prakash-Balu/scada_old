@@ -1,4 +1,7 @@
-<!-- page content -->
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
+        <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
             <div class="page-title">
@@ -29,7 +32,7 @@
                   </div>
                   <div class="x_content">
                     
-                    <table class="table table-striped table-bordered">
+                    <table id="datatable" class="table table-striped table-bordered">
                       <thead>
                         <tr>
                           <th>Power</th>
@@ -134,3 +137,4 @@
           </div>
         </div>
         <!-- /page content -->
+<?php  $this->load->view('layout/footer'); ?>
