@@ -108,7 +108,10 @@ class Dashboard extends CI_Controller {
 	}
 	
 	function temp_analysis() {
-		$this->load->view('dashboard/temp_analysis');
+		$device_list = $this->Common_model->get_region_site_list();
+		
+		$data['tempAna']['deviceList'] = $device_list;
+		$this->load->view('dashboard/temp_analysis', $data);
 	}
 
 	function powercurve_analysis() {
@@ -118,8 +121,11 @@ class Dashboard extends CI_Controller {
 	function performance_analysis() {
 		$this->load->view('dashboard/performance_analysis');
 	}
+
+	function get_temp_analysis() {
+		if(!empty($_REQUEST['id'])) {
+			echo $_REQUEST['id'];exit;
+		}
+	}
 }
-
-
- 
 ?>
