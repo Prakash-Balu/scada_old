@@ -14,12 +14,12 @@ class Dashboard extends CI_Controller {
 		if(empty($this->sessionUsername)){
 			redirect('');
 		}
+		
 		$this->load->view('layout/header');
 		$this->db2 = $this->load->database($this->Common_model->set_db_config(), TRUE);
 	}
  
 	function index() {
-		
 		$type_list = $this->Common_model->getDeviceList(  );//get devic type list
 		//print_r($type_list);
 		$data['green']=$data['blue']=$data['red']=$data['gray']=array();
@@ -30,9 +30,10 @@ class Dashboard extends CI_Controller {
 			$blue_array = array('GRIDDROP', 'griddrop', 'Grid Drop', 'Grid Drop');
 			$red_array = array_merge($green_array,$blue_array);
 			$total_count=0;
+			$count=0;
 			$i=0;
 			$green=$blue=$red=$gray=array();
-			$avgWindSpeed = 0;
+			$avgWindSpeed = $powerSpeed=$pat_gen_list=$pat_gen_first=$pat_gen_last=array();
 			foreach($type_list as $list)
 			{
 				$val	=	$this->Common_model->get_device_details( $list->Format_Type, $list->IMEI );
@@ -57,19 +58,24 @@ class Dashboard extends CI_Controller {
 					}elseif(in_array($val->Status,$red_array)){
 						$red[] = $val;
 					}
-
-					$avgWindSpeed = $avgWindSpeed + $val->Windspeed;
 				}
 				$total_count = $list->cnt;
-				$avgWindSpeed = $avgWindSpeed/$total_count;
 			}
+		
+
 			$data['response']['green'] = array('count'=> count($green),'name'=>'WTG RUN','total'=>$total_count);
 			$data['response']['red']= array('count'=> count($red),'name'=>'WTG GRID DROP','total'=>$total_count);
 			$data['response']['blue']= array('count'=> count($blue),'name'=>'WTG ERROR','total'=>$total_count);
 			$data['response']['gray']= array('count'=> count($gray),'name'=>'WTG SCADA OFF','total'=>$total_count);
-			$data1['avgWindSpeed'] = $avgWindSpeed;
-			$this->session->set_userdata($data1);
+			
 		}
+
+		$data['avgWindSpeed'] = $this->session->userdata('avgWindSpeed');
+		$data['powerSpeed'] = $this->session->userdata('powerSpeed');
+		$data['patGen'] = $this->session->userdata('patGen');
+		$data['avgWindSpeedSum'] = $this->session->userdata('avgWindSpeedSum');
+		$data['powerSpeedSum'] = $this->session->userdata('powerSpeedSum');
+		$data['patGenSum'] = $this->session->userdata('patGenSum');
 	
 		$this->load->view('dashboard/index',$data);
 	}

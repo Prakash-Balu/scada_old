@@ -875,16 +875,7 @@ if (typeof NProgress != 'undefined') {
 			});
 			
 			
-			$(".sparkline22").sparkline([2, 4, 3, 4, 7, 5, 4, 3, 5, 6, 2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 6], {
-				type: 'line',
-				height: '40',
-				width: '200',
-				lineColor: '#26B99A',
-				fillColor: '#ffffff',
-				lineWidth: 3,
-				spotColor: '#34495E',
-				minSpotColor: '#34495E'
-			});
+		
 	
 	
 			$(".sparkline_bar").sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 5, 6, 4, 5, 6, 3, 5], {
@@ -2967,7 +2958,6 @@ if (typeof NProgress != 'undefined') {
 				  }
 			  };
 
-			  
 			  //echart Bar
 			  
 			if ($('#mainb').length ){

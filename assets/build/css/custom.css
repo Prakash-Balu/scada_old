@@ -1905,7 +1905,7 @@ h4.graph_title {
     padding: 0
 }
 .tile-stats .count {
-    font-size: 26px;
+    font-size: 15px;
     font-weight: bold;
     line-height: 1.65857
 }
@@ -4253,3 +4253,5 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
     background-color: #ffff !important;
 }
 /** /bootstrap-datetimepicker **/
+
+.dataTables_length{display:none;}

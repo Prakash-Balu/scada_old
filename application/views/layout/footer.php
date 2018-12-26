@@ -22,6 +22,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="<?php echo base_url();?>assets/vendors/nprogress/nprogress.js"></script>
     <!-- Chart.js -->
     <script src="<?php echo base_url();?>assets/vendors/Chart.js/dist/Chart.min.js"></script>
+    <script src="<?php echo base_url();?>assets/vendors/echarts/dist/echarts.min.js"></script>
     <!-- jQuery Sparklines -->
     <script src="<?php echo base_url();?>assets/vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
     <!-- gauge.js -->
@@ -71,5 +72,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="<?php echo base_url();?>assets/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="<?php echo base_url();?>assets/build/js/custom.js"></script>
+<script>
+    $(document).ready(function() {
+      var table = $('.data_table').DataTable( {
+          responsive: true
+      } );
+  
+     // new $.fn.dataTable.FixedHeader( table );
+    } );
+</script>
   </body>
 </html>

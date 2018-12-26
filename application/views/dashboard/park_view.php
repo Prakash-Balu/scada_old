@@ -45,7 +45,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   </div>
                   <div class="x_content">
                     
-                    <table id="datatable" class="table table-striped table-bordered">
+                    <table id="table1" class="table table-striped table-bordered nowrap data_table" style="width:100%">
                       <thead>
                         <tr>
                           <th>Power</th>
@@ -78,7 +78,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <table id="table3" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <table id="table2" class="table table-striped table-bordered nowrap data_table" style="width:100%">
                       <thead>
                         <tr>
                           <th>Loc no</th>
@@ -123,7 +123,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   </div>
                   <div class="x_content">
                     
-                    <table  class="table table-striped table-bordered">
+                    <table  id="table3" class="table table-striped table-bordered nowrap data_table" style="width:100%">
                       <thead>
                         <tr>
                           <th>Date</th>
@@ -152,8 +152,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               }
             ?>
             </div>
-
-            
+           
           </div>
         </div>
         <!-- /page content -->
