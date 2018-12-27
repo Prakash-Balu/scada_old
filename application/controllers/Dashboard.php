@@ -123,9 +123,15 @@ class Dashboard extends CI_Controller {
 	}
 
 	function get_temp_analysis() {
-		if(!empty($_REQUEST['id'])) {
-			echo $_REQUEST['id'];exit;
+		if(!empty($_REQUEST)) {
+			echo'<pre>';print_r( $_REQUEST);exit;
+
+			$date = date('Y-m-d', strtotime($_REQUEST['date']));
+				$search = array('order' =>'ASC','start_date'=>$date,'end_date'=>$date);
+				$tempAnaData =	$this->get_device_data_details( $list->Format_Type, '',$search);
 		}
+
+
 	}
 }
 ?>
