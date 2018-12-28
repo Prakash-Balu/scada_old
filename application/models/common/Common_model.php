@@ -32,7 +32,7 @@ Class Common_model extends CI_Model {
 
 	function set_session_device_list(){
 		$type_list = $this->getDeviceList(  );//get devic type list
-		//print_r($type_list);
+		$data = array();
 		$total_device = count($type_list);
 		if(!empty($type_list))
 		{
@@ -71,7 +71,7 @@ Class Common_model extends CI_Model {
 			$data['patGenSum'] = number_format(array_sum($pat_gen_list),2);
 			$this->session->set_userdata($data);
 		}
-	
+		return $data;
 	}
 	
 	function get_device_details($type, $imei)
@@ -131,14 +131,16 @@ Class Common_model extends CI_Model {
           return $query->row();
     }
 	
-	function getDeviceList(  ) {
+	function getDeviceList( $device_name='' ) {
         $result = array();
 	
 		$Account_ID = $this->session->userdata('account_id');
 
         $this->db->select('IMEI, Format_Type , (SELECT  count(*) as cnt FROM `device_register` WHERE `Account_ID` = '.$Account_ID.') as cnt')
 				->where('Account_ID',$Account_ID);
-				//->where_not_in('Format_Type',1);
+				if(!empty($device_name)){
+					$this->db->where_in('Device_Name',$device_name);
+				}
 		$query = $this->db->get('device_register');
     
         return $query->result();

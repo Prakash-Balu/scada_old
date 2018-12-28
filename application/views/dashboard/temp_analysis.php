@@ -129,6 +129,17 @@ function getTempAnalysis(TempName) {
   console.log(TempName)
   var date_val = $('#start_date').val();
 
+   var device_name = [];
+    $.each($("input[name='device_name[]']:checked"), function(){            
+      device_name.push($(this).val());
+    });
+    console.log(device_name);
+
+  if( device_name == '' ){
+    alert ('Please select device name');
+    return false;
+  }
+
   if( date_val == '' ){
     alert ('Please select date');
     return false;
@@ -140,7 +151,7 @@ function getTempAnalysis(TempName) {
     type:'POST',
     url:"<?php echo base_url(); ?>dashboard/get_temp_analysis",
     dataType: 'json',
-    data:{'id':imei,'date':date_val,'formate_type':f_type},
+    data:{'device_name':device_name,'date':date_val},
     success:function(data){
         console.log(data);
     }

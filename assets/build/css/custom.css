@@ -4255,3 +4255,30 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
 /** /bootstrap-datetimepicker **/
 
 .dataTables_length{display:none;}
+.green-box{
+    background-color: #5ce45c;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.12), 0 10px 10px rgba(0, 0, 0, 0.24);
+}
+
+.blue-box{
+    background-color: #7a7ac1;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.12), 0 10px 10px rgba(0, 0, 0, 0.24);
+}
+
+.red-box{
+    background-color: #EF5350;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.12), 0 10px 10px rgba(0, 0, 0, 0.24);
+}
+
+.gray-box{
+    background-color: #887979;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.12), 0 10px 10px rgba(0, 0, 0, 0.24);
+}

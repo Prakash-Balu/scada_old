@@ -123,14 +123,26 @@ class Dashboard extends CI_Controller {
 	}
 
 	function get_temp_analysis() {
-		if(!empty($_REQUEST)) {
-			echo'<pre>';print_r( $_REQUEST);exit;
-
+		if(empty($_REQUEST['device_name']) && empty($_REQUEST['date'])) {
+			echo json_encode(array('message'=>'invaid'));exit;
+		}
+		echo'<pre>';print_r( $_REQUEST);exit;
+		$device_list = $this->Common_model->getDeviceList($_REQUEST['device_name']);
+		foreach($device_list as $list)
+		{
 			$date = date('Y-m-d', strtotime($_REQUEST['date']));
+			$search = array('order' =>'ASC','start_date'=>$date,'end_date'=>$date);
+			$val	=	$this->Common_model->get_device_details( $list->Format_Type, $list->IMEI,$search );
+			 echo "<pre>";print_r($val); exit;
+			if(!empty($val))
+			{
+				$date = date('Y-m-d', strtotime($_REQUEST['date']));
 				$search = array('order' =>'ASC','start_date'=>$date,'end_date'=>$date);
 				$tempAnaData =	$this->get_device_data_details( $list->Format_Type, '',$search);
+			}
 		}
-
+		
+		
 
 	}
 }

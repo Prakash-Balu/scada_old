@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="row">
                     <?php foreach($response as $key=>$val){ ?>
                       <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="tile-stats text-center" style="background-color: <?php echo $key;?>">
+                        <div class="tile-stats text-center <?php echo $key.'-box';?>">
                           <label class="count" style="color: #fff;"><?php echo $val['name'].' : '.$val['count'] ?></label>
                           <div class="border-line"></div>
                           <h5 style="color: #fff;font-weight: bold;padding-top: 10px;">Total WTG : <?php echo $val['total'] ?></h5>
