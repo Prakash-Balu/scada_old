@@ -84,6 +84,6 @@ defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
-define('DB_HOST', 'mysqlhost');
+define('DB_HOST', 'localhost');
 define('DB_USERNAME', 'root');
-define('DB_PASSWORD', 'mysql');
+define('DB_PASSWORD', '');
